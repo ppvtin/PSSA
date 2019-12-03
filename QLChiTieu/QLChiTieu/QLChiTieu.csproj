@@ -68,6 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dangkiform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dangkiform.Designer.cs">
+      <DependentUpon>Dangkiform.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseManager.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -95,6 +101,9 @@
     <Compile Include="TaiKhoan.cs">
       <DependentUpon>QLMoney.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dangkiform.resx">
+      <DependentUpon>Dangkiform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
