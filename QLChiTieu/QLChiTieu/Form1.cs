@@ -35,7 +35,8 @@ namespace QLChiTieu
 
         void btnDK_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Dangkiform DKF2 = new Dangkiform();
+            DKF2.ShowDialog();
         }
     }
 }

@@ -26,5 +26,16 @@ namespace QLChiTieu
             }
             return isValid;
         }
+
+        public void DangKy(string tk, string matKhau)
+        {
+            TaiKhoan temp = new TaiKhoan();
+            temp.taiKhoan1 = tk;
+            temp.matKhau = matKhau;
+            DataManagerMoneyEntities db = new DataManagerMoneyEntities();
+            db.TaiKhoans.Add(temp);
+            db.SaveChanges();
+            db.Dispose();
+        }
     }
 }

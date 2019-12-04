@@ -12,27 +12,38 @@ namespace QLChiTieu
 {
     public partial class Dangkiform : Form
     {
+        DatabaseManager bussiness;
         public Dangkiform()
         {
             InitializeComponent();
             this.btnCancel.Click += btnCancel_Click;
             this.btnSave.Click += btnSave_Click;
+            bussiness = new DatabaseManager();
+            
         }
 
         void btnSave_Click(object sender, EventArgs e)
         {
-
-            MessageBox.Show("Dang ky thanh cong");
-            this.Close();
+            string tk = txtTaikhoan.Text;
+            string pass = txtmatkhau.Text;
+            string repass = txtRematkhau.Text;
+            if (pass == repass)
+            {
+                MessageBox.Show("Dang ky thanh cong");
+                this.bussiness.DangKy(tk, pass);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Dang nhap lai");
+            }
+            
         }
 
         void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+            
         }
-
-       
-
-       
     }
 }
