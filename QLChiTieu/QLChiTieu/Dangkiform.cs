@@ -27,13 +27,14 @@ namespace QLChiTieu
             string tk = txtTaikhoan.Text;
             string pass = txtmatkhau.Text;
             string repass = txtRematkhau.Text;
-            if (pass == repass)
+            string a = "";  
+            if (pass == repass && pass != a && tk != a && repass !=a)
             {
                 MessageBox.Show("Dang ky thanh cong");
                 this.bussiness.DangKy(tk, pass);
                 this.Close();
             }
-            else
+            else  
             {
                 MessageBox.Show("Dang nhap lai");
             }
