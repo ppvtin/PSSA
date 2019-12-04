@@ -36,7 +36,7 @@ namespace QLChiTieu
             }
             else  
             {
-                MessageBox.Show("Dang nhap lai");
+                MessageBox.Show("Dang nhap lai") ;
             }
             
         }
