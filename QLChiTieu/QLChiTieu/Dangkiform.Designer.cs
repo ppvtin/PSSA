@@ -175,6 +175,7 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(362, 22);
             this.txtPass.TabIndex = 15;
+            this.txtPass.Text = "-";
             // 
             // Dangkiform
             // 
