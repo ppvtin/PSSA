@@ -37,5 +37,54 @@ namespace QLChiTieu
             db.SaveChanges();
             db.Dispose();
         }
+
+        public ChiRa[] GetChiRa()
+        {
+            DataManagerMoneyEntities db = new DataManagerMoneyEntities();
+            return db.ChiRas.ToArray();
+        }
+
+        public ThuVao[] GetThuVao()
+        {
+            DataManagerMoneyEntities db = new DataManagerMoneyEntities();
+            return db.ThuVaos.ToArray();
+        }
+        public void SetChiRa(string taikhoan , string tenchi , float gia, int soluong, DateTime time)
+        {
+            ChiRa temp = new ChiRa();
+            temp.TenTK = taikhoan;
+            temp.TenChi = tenchi;
+            temp.soluong = soluong ;
+            temp.GiaTien = gia;
+            temp.Time = time;
+
+            DataManagerMoneyEntities db = new DataManagerMoneyEntities();
+            db.ChiRas.Add(temp);
+            db.SaveChanges();
+            db.Dispose();
+        }
+        public void SetThuvao (string taikhoan , string tenthu , double gia , DateTime time)
+        {
+            ThuVao temp = new ThuVao();
+            temp.TenTK = taikhoan;
+            temp.TenThuVao = tenthu;
+            temp.GiaTien = gia;
+            temp.Time = time;
+            DataManagerMoneyEntities db = new DataManagerMoneyEntities();
+            db.ThuVaos.Add(temp);
+            db.SaveChanges();
+            db.Dispose();
+        }
+
+        public double GetTongTienChi()
+        {
+            DataManagerMoneyEntities db = new DataManagerMoneyEntities();
+            return db.ChiRas.Select(item => item.GiaTien).Sum();
+        }
+        public double GetTongTienThu()
+        {
+            DataManagerMoneyEntities db = new DataManagerMoneyEntities();
+            return db.ThuVaos.Select(item => item.GiaTien).Sum();
+        }
     }
 }

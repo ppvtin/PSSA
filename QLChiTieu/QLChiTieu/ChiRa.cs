@@ -12,18 +12,15 @@ namespace QLChiTieu
     using System;
     using System.Collections.Generic;
     
-    public partial class TaiKhoan
+    public partial class ChiRa
     {
-        public TaiKhoan()
-        {
-            this.ChiRas = new HashSet<ChiRa>();
-            this.ThuVaos = new HashSet<ThuVao>();
-        }
+        public int STT { get; set; }
+        public string TenTK { get; set; }
+        public string TenChi { get; set; }
+        public int soluong { get; set; }
+        public double GiaTien { get; set; }
+        public System.DateTime Time { get; set; }
     
-        public string taiKhoan1 { get; set; }
-        public string matKhau { get; set; }
-    
-        public virtual ICollection<ChiRa> ChiRas { get; set; }
-        public virtual ICollection<ThuVao> ThuVaos { get; set; }
+        public virtual TaiKhoan TaiKhoan { get; set; }
     }
 }

@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DataManagerMoneyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ChiRa">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenTK" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TenChi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="soluong" Type="int" Nullable="false" />
+          <Property Name="GiaTien" Type="float" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
             <PropertyRef Name="taiKhoan" />
@@ -12,8 +23,52 @@
           <Property Name="taiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="matKhau" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="ThuVao">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenTK" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TenThuVao" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GiaTien" Type="float" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ChiRa_ToTable">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+          <End Role="ChiRa" Type="Self.ChiRa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="taiKhoan" />
+            </Principal>
+            <Dependent Role="ChiRa">
+              <PropertyRef Name="TenTK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThuVao_ToTable">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+          <End Role="ThuVao" Type="Self.ThuVao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="taiKhoan" />
+            </Principal>
+            <Dependent Role="ThuVao">
+              <PropertyRef Name="TenTK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DataManagerMoneyModelStoreContainer">
+          <EntitySet Name="ChiRa" EntityType="Self.ChiRa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThuVao" EntityType="Self.ThuVao" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ChiRa_ToTable" Association="Self.FK_ChiRa_ToTable">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="ChiRa" EntitySet="ChiRa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThuVao_ToTable" Association="Self.FK_ThuVao_ToTable">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="ThuVao" EntitySet="ThuVao" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -21,6 +76,16 @@
       <Schema Namespace="DataManagerMoneyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DataManagerMoneyEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="TaiKhoans" EntityType="DataManagerMoneyModel.TaiKhoan" />
+          <EntitySet Name="ChiRas" EntityType="DataManagerMoneyModel.ChiRa" />
+          <EntitySet Name="ThuVaos" EntityType="DataManagerMoneyModel.ThuVao" />
+          <AssociationSet Name="FK_ChiRa_ToTable" Association="DataManagerMoneyModel.FK_ChiRa_ToTable">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="ChiRa" EntitySet="ChiRas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThuVao_ToTable" Association="DataManagerMoneyModel.FK_ThuVao_ToTable">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="ThuVao" EntitySet="ThuVaos" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -28,7 +93,56 @@
           </Key>
           <Property Name="taiKhoan1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="matKhau" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ChiRas" Relationship="DataManagerMoneyModel.FK_ChiRa_ToTable" FromRole="TaiKhoan" ToRole="ChiRa" />
+          <NavigationProperty Name="ThuVaos" Relationship="DataManagerMoneyModel.FK_ThuVao_ToTable" FromRole="TaiKhoan" ToRole="ThuVao" />
         </EntityType>
+        <EntityType Name="ChiRa">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTK" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TenChi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="soluong" Type="Int32" Nullable="false" />
+          <Property Name="GiaTien" Type="Double" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TaiKhoan" Relationship="DataManagerMoneyModel.FK_ChiRa_ToTable" FromRole="ChiRa" ToRole="TaiKhoan" />
+        </EntityType>
+        <EntityType Name="ThuVao">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTK" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TenThuVao" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GiaTien" Type="Double" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TaiKhoan" Relationship="DataManagerMoneyModel.FK_ThuVao_ToTable" FromRole="ThuVao" ToRole="TaiKhoan" />
+        </EntityType>
+        <Association Name="FK_ChiRa_ToTable">
+          <End Type="DataManagerMoneyModel.TaiKhoan" Role="TaiKhoan" Multiplicity="1" />
+          <End Type="DataManagerMoneyModel.ChiRa" Role="ChiRa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="taiKhoan1" />
+            </Principal>
+            <Dependent Role="ChiRa">
+              <PropertyRef Name="TenTK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThuVao_ToTable">
+          <End Type="DataManagerMoneyModel.TaiKhoan" Role="TaiKhoan" Multiplicity="1" />
+          <End Type="DataManagerMoneyModel.ThuVao" Role="ThuVao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="taiKhoan1" />
+            </Principal>
+            <Dependent Role="ThuVao">
+              <PropertyRef Name="TenTK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -43,7 +157,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="ChiRas">
+            <EntityTypeMapping TypeName="DataManagerMoneyModel.ChiRa">
+              <MappingFragment StoreEntitySet="ChiRa">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="TenChi" ColumnName="TenChi" />
+                <ScalarProperty Name="TenTK" ColumnName="TenTK" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThuVaos">
+            <EntityTypeMapping TypeName="DataManagerMoneyModel.ThuVao">
+              <MappingFragment StoreEntitySet="ThuVao">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
+                <ScalarProperty Name="TenThuVao" ColumnName="TenThuVao" />
+                <ScalarProperty Name="TenTK" ColumnName="TenTK" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -26,5 +26,7 @@ namespace QLChiTieu
         }
     
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
+        public virtual DbSet<ChiRa> ChiRas { get; set; }
+        public virtual DbSet<ThuVao> ThuVaos { get; set; }
     }
 }

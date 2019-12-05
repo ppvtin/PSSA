@@ -6,6 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="55d4dfff23b14624ae08c127bf373c02" Name="Diagram1" >
         <EntityTypeShape EntityType="DataManagerMoneyModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DataManagerMoneyModel.ChiRa" Width="1.5" PointX="1" PointY="3.25" />
+        <EntityTypeShape EntityType="DataManagerMoneyModel.ThuVao" Width="1.5" PointX="3.75" PointY="1.375" />
+        <AssociationConnector Association="DataManagerMoneyModel.FK_ChiRa_ToTable" />
+        <AssociationConnector Association="DataManagerMoneyModel.FK_ThuVao_ToTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
