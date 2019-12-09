@@ -86,5 +86,21 @@ namespace QLChiTieu
             DataManagerMoneyEntities db = new DataManagerMoneyEntities();
             return db.ThuVaos.Select(item => item.GiaTien).Sum();
         }
+        public void deleteThu(int Ma)
+        {
+            DataManagerMoneyEntities db = new DataManagerMoneyEntities();
+            var data = db.ThuVaos.Find(Ma);
+            db.ThuVaos.Remove(data);
+            db.SaveChanges();
+            db.Dispose();
+        }
+        public void deleteChi(int Ma)
+        {
+            DataManagerMoneyEntities db = new DataManagerMoneyEntities();
+            var data = db.ChiRas.Find(Ma);
+            db.ChiRas.Remove(data);
+            db.SaveChanges();
+            db.Dispose();
+        }
     }
 }

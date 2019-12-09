@@ -20,6 +20,20 @@ namespace QLChiTieu
             business = new DatabaseManager();
             btnSaveChi.Click += btnSaveChi_Click;
             btnSavethu.Click += btnSavethu_Click;
+            btnDelete.Click += BtnDelete_Click;
+            Delete.Click += Delete_Click;
+        }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            business.deleteThu(int.Parse(grdThuvao.SelectedRows[0].Cells[0].Value.ToString()));
+            this.OnLoad(null);
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            business.deleteChi(int.Parse(grdThuvao.SelectedRows[0].Cells[0].Value.ToString()));
+            this.OnLoad(null);
         }
 
         void btnSavethu_Click(object sender, EventArgs e)
@@ -41,6 +55,10 @@ namespace QLChiTieu
             DateTime t = DateTime.Parse(ngaythangChi.Text);
             business.SetChiRa(taikhoan,tenChi,gia,soluong,t);
             this.OnLoad(null);
+            if (business.GetTongTienThu() - business.GetTongTienChi() < 5000000)
+            {
+                MessageBox.Show("Hiện tiền hiện có của bạn đang dưới 5000000 VND");
+            }
 
         }
 
