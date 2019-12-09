@@ -56,6 +56,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.Delete = new System.Windows.Forms.Button();
+            this.txtMocTien = new System.Windows.Forms.TextBox();
+            this.btnSaveMocTien = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdChi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdThuvao)).BeginInit();
             this.SuspendLayout();
@@ -199,7 +202,7 @@
             // 
             // btnSaveChi
             // 
-            this.btnSaveChi.Location = new System.Drawing.Point(851, 95);
+            this.btnSaveChi.Location = new System.Drawing.Point(930, 65);
             this.btnSaveChi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSaveChi.Name = "btnSaveChi";
             this.btnSaveChi.Size = new System.Drawing.Size(75, 23);
@@ -209,7 +212,7 @@
             // 
             // btnSavethu
             // 
-            this.btnSavethu.Location = new System.Drawing.Point(851, 190);
+            this.btnSavethu.Location = new System.Drawing.Point(930, 158);
             this.btnSavethu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSavethu.Name = "btnSavethu";
             this.btnSavethu.Size = new System.Drawing.Size(75, 23);
@@ -310,11 +313,41 @@
             this.Delete.Text = "Delete";
             this.Delete.UseVisualStyleBackColor = true;
             // 
+            // txtMocTien
+            // 
+            this.txtMocTien.Location = new System.Drawing.Point(824, 23);
+            this.txtMocTien.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtMocTien.Name = "txtMocTien";
+            this.txtMocTien.Size = new System.Drawing.Size(100, 22);
+            this.txtMocTien.TabIndex = 35;
+            // 
+            // btnSaveMocTien
+            // 
+            this.btnSaveMocTien.Location = new System.Drawing.Point(930, 23);
+            this.btnSaveMocTien.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSaveMocTien.Name = "btnSaveMocTien";
+            this.btnSaveMocTien.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveMocTien.TabIndex = 36;
+            this.btnSaveMocTien.Text = "Save";
+            this.btnSaveMocTien.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(712, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 17);
+            this.label3.TabIndex = 37;
+            this.label3.Text = "Mốc Tiền";
+            // 
             // QLCT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1012, 471);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnSaveMocTien);
+            this.Controls.Add(this.txtMocTien);
             this.Controls.Add(this.Delete);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.label2);
@@ -384,5 +417,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button Delete;
+        private System.Windows.Forms.TextBox txtMocTien;
+        private System.Windows.Forms.Button btnSaveMocTien;
+        private System.Windows.Forms.Label label3;
     }
 }
