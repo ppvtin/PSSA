@@ -73,7 +73,7 @@ namespace QLChiTieu
             DataManagerMoneyEntities db = new DataManagerMoneyEntities();
             db.ThuVaos.Add(temp);
             db.SaveChanges();
-            db.Dispose();
+            db.Dispose(); 
         }
 
         public double GetTongTienChi()
